@@ -1,0 +1,36 @@
+﻿@page "/medicos"
+@rendermode InteractiveServer
+@inject IMedicoRepository repository
+
+<CustomHeader>
+    Listagem de Médicos
+</CustomHeader>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>CRM</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <MedicoTemplateList Medicos="@Medicos" DeleteCallback="Delete" />
+    </tbody>
+</table>
+@code {
+    public List<Medico> Medicos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Medicos = await repository.GetAllAsync();
+    }
+
+    public void Delete(Medico medico)
+    {
+        Medicos?.Remove(medico);
+    }
+
+
+}
