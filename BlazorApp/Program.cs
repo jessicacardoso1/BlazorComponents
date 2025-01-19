@@ -1,5 +1,8 @@
-using BlazorComponent.Components;
-using BlazorComponent.Repositories;
+using BlazorApp.Components;
+using BlazorApp.Data;
+using BlazorApp.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,9 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
 

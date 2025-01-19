@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorComponent.Models
+namespace BlazorApp.Models
 {
     public class Medico
     {
+        [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Nome deve ser Fornecido")]
         [MinLength(3, ErrorMessage = "Nome deve conter no mínimo 3 caracteres")]
@@ -13,5 +14,6 @@ namespace BlazorComponent.Models
 
         [Required(ErrorMessage = "CRM deve ser Fornecido")]
         public string Crm { get; set; }
+        public string Especialidade { get; set; }
     }
 }

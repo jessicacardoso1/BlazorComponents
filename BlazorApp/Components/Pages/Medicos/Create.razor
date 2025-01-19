@@ -1,11 +1,12 @@
 ﻿@page "/medicos/create"
 @rendermode InteractiveServer
+@inject NavigationManager navigation
 
 <CustomHeader>
     Cadastro de Médicos
 </CustomHeader>
 
-<EditForm Model="Model">
+<EditForm Model="Model" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
 
     @* <ValidationSummary/> *@
@@ -25,4 +26,20 @@
 </EditForm>
 @code {
     public Medico Model { get; set; } = new Medico();
+
+    // public void OnSubmit(EditContext editContext)
+    // {
+    //     var context = editContext;
+    // }
+
+    public void OnInvalidSubmit(EditContext editContext)
+    {
+        var context = editContext;
+    }
+
+    public void OnValidSubmit(EditContext editContext)
+    {
+        var context = editContext;
+        navigation.NavigateTo("/medicos");
+    }
 }

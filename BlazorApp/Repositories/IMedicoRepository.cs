@@ -1,6 +1,6 @@
-﻿using BlazorComponent.Models;
+﻿using BlazorApp.Models;
 
-namespace BlazorComponent.Repositories
+namespace BlazorApp.Repositories
 {
     public interface IMedicoRepository
     {
