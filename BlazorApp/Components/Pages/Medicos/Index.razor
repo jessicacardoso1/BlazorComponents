@@ -1,4 +1,4 @@
-﻿@page "/medicos"
+﻿@page "/medicosOld"
 @rendermode InteractiveServer
 @inject IMedicoRepository repository
 @inject NavigationManager navigaion
@@ -42,7 +42,7 @@
 
     public void NovoMedico()
     {
-        navigaion.NavigateTo("/medicos/create");
+        navigaion.NavigateTo("/medicosOld/create");
     }
 
 

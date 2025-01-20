@@ -1,4 +1,4 @@
-﻿@page "/medicos/create"
+﻿@page "/medicosOld/create"
 @rendermode InteractiveServer
 @inject NavigationManager navigation
 
@@ -40,6 +40,6 @@
     public void OnValidSubmit(EditContext editContext)
     {
         var context = editContext;
-        navigation.NavigateTo("/medicos");
+        navigation.NavigateTo("/medicosOld");
     }
 }
