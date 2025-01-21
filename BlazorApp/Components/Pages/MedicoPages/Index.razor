@@ -3,37 +3,28 @@
 @using Microsoft.AspNetCore.Components.QuickGrid
 @using BlazorApp.Models
 @using BlazorApp.Infrastructure
-@implements IAsyncDisposable
-@inject IDbContextFactory<BlazorApp.Infrastructure.ApplicationDbContext> DbFactory
+@inject ApplicationDbContext Context
 
+<PageTitle>Lista de Médicos</PageTitle>
 
-<PageTitle>Index</PageTitle>
-
-<h1>Index</h1>
+<h1>Lista de Médicos</h1>
 
 <p>
-    <a href="medicos/create">Create New</a>
+    <a href="medicos/create">Criar Novo Médico</a>
 </p>
 
-<QuickGrid Class="table" Items="context.Medicos">
-    <PropertyColumn Property="medico => medico.Nome" />
-    <PropertyColumn Property="medico => medico.Crm" />
-    <PropertyColumn Property="medico => medico.Especialidade" />
+<QuickGrid Class="table" Items="Context.Medicos" TGridItem="Medico">
+    <PropertyColumn Property="medico => medico.Nome" Title="Nome" />
+    <PropertyColumn Property="medico => medico.Crm" Title="CRM" />
+    <PropertyColumn Property="medico => medico.Especialidade" Title="Especialidade" />
 
     <TemplateColumn Context="medico">
-        <a href="@($"medicos/edit?id={medico.Id}")">Edit</a> |
-        <a href="@($"medicos/details?id={medico.Id}")">Details</a> |
-        <a href="@($"medicos/delete?id={medico.Id}")">Delete</a>
+        <a href="@($"medicos/edit?id={medico.Id}")">Editar</a> |
+        <a href="@($"medicos/details?id={medico.Id}")">Detalhes</a> |
+        <a href="@($"medicos/delete?id={medico.Id}")">Excluir</a>
     </TemplateColumn>
 </QuickGrid>
 
 @code {
-    private ApplicationDbContext context = default!;
-
-    protected override void OnInitialized()
-    {
-        context = DbFactory.CreateDbContext();
-    }
-
-    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+    // Não é necessário carregar os dados na memória; o QuickGrid consumirá diretamente o IQueryable.
 }
